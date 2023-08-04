@@ -1,0 +1,70 @@
+@font-face {
+    font-family: Anton;
+    src: url('../assets/fonts/Anton-Regular.ttf');
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Anton";
+}
+
+body {
+    max-width: 1440px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Need to change static height with bootstrap or CSS */
+header {
+    background: url("../assets/images/home-background.png");
+    height: 94vh;
+    padding: 36px 72px;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+h1 {
+    color: white;
+}
+
+h2 {
+    color: orange;
+    font-size: 44px;
+    text-align: center;
+    font-weight: 400;
+}
+
+input {
+    border: none;
+    width: 100%;
+}
+
+div {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    width: 1000px;
+    height: 50px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+span {
+    text-align: center;
+    background-color: black;
+    color: white;
+    width: 56px;
+    margin: 8px;
+    border-radius: 8px;
+}
