@@ -1,7 +1,4 @@
-@font-face {
-  font-family: Anton;
-  src: url('../assets/fonts/Anton-Regular.ttf');
-}
+@import "./variables.scss";
 
 * {
   box-sizing: border-box;
@@ -12,7 +9,8 @@
 body {
   max-width: 1440px;
   margin: auto;
-  background-color: #C6C6C6;
+  background-color: $lightgrey;
+  font-family: "Manrope";
 }
 
 a {
@@ -33,7 +31,7 @@ header {
     height: 100%;
   }
   h2 {
-    color: #ffd15b;
+    color: $yellow;
     font-size: 44px;
     text-align: center;
     font-weight: 400;
@@ -70,19 +68,27 @@ header {
   }
 }
 
+.search-result {
+  display: flex;
+  justify-content:space-evenly;
+  flex-wrap: wrap;
+}
+
 .recipe {
-  margin: 24px;
-  width: 30%;
+  width: 27%;
+  height: 730px;
+  margin-bottom: 66px;
   border-radius: 20px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   background-color: white;
+  font-size: 14px;
   &__time {
     position: absolute;
     align-self: flex-end;
     margin: 16px;
-    background-color: #ffd15b;
+    background-color: $yellow;
     border-radius: 8px;
     padding: 8px 16px;
   }
@@ -92,10 +98,39 @@ header {
     height: 300px;
   }
   &__title, &__description, &__ingredients {
-    padding: 0 16px;
+    padding: 0 24px;
   }
   &__title {
     font-family: 'Anton';
     margin: 16px 0;
+    font-size: 18px;
+  }
+  &__description {
+    height: 107px;
+    overflow:hidden;
+  }
+  h3 {
+    text-transform: uppercase;
+    color: $grey;
+    margin: 16px 0;
+    font-size: 12px;
+  }
+  &__ingredients {
+    margin: 8px 0;
+  }
+  &__ingredients-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    div {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 24px;
+    }
+  }
+  &__ingredients-element {
+    font-weight: 600;
+  }
+  &__ingredients-quantity {
+    color: $grey;
   }
 }

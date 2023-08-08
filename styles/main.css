@@ -2,6 +2,10 @@
   font-family: Anton;
   src: url("../assets/fonts/Anton-Regular.ttf");
 }
+@font-face {
+  font-family: Manrope;
+  src: url("../assets/fonts/Manrope-Variable.ttf");
+}
 * {
   box-sizing: border-box;
   margin: 0;
@@ -12,6 +16,7 @@ body {
   max-width: 1440px;
   margin: auto;
   background-color: #C6C6C6;
+  font-family: "Manrope";
 }
 
 a {
@@ -69,14 +74,22 @@ header span {
   margin: 0 16px;
 }
 
+.search-result {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
 .recipe {
-  margin: 24px;
-  width: 30%;
+  width: 27%;
+  height: 730px;
+  margin-bottom: 66px;
   border-radius: 20px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   background-color: white;
+  font-size: 14px;
 }
 .recipe__time {
   position: absolute;
@@ -93,9 +106,38 @@ header span {
   height: 300px;
 }
 .recipe__title, .recipe__description, .recipe__ingredients {
-  padding: 0 16px;
+  padding: 0 24px;
 }
 .recipe__title {
   font-family: "Anton";
   margin: 16px 0;
+  font-size: 18px;
+}
+.recipe__description {
+  height: 107px;
+  overflow: hidden;
+}
+.recipe h3 {
+  text-transform: uppercase;
+  color: #7A7A7A;
+  margin: 16px 0;
+  font-size: 12px;
+}
+.recipe__ingredients {
+  margin: 8px 0;
+}
+.recipe__ingredients-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.recipe__ingredients-list div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+}
+.recipe__ingredients-element {
+  font-weight: 600;
+}
+.recipe__ingredients-quantity {
+  color: #7A7A7A;
 }/*# sourceMappingURL=main.css.map */

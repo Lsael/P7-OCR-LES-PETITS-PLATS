@@ -12,16 +12,19 @@ export const useThumbnailTemplate = (recipe) => {
         </div>
         <div class="recipe__ingredients">
             <h3>Ingrédients</h3>
-            ${ingredients.map((ingredient) => {
+            <div class="recipe__ingredients-list">
+            ${ingredients
+              .map((ingredient) => {
                 // need to add units
                 return `
                     <div>
-                        <span>${ingredient.ingredient}</span>
-                        <span>${ingredient.quantity}</span>
+                        <span class="recipe__ingredients-element">${ingredient.ingredient}</span>
+                        <span class="recipe__ingredients-quantity">${ingredient.quantity ? ingredient.quantity : ''} ${ingredient.unit ? ingredient.unit : ''}</span>
                     </div>
-                `
-                }).join('')
-            }
+                `;
+              })
+              .join('')}
+            </div>
         </div>
     </article>
     `;
