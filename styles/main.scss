@@ -12,6 +12,7 @@
 body {
   max-width: 1440px;
   margin: auto;
+  background-color: #C6C6C6;
 }
 
 a {
@@ -62,6 +63,39 @@ header {
   }
 }
 
-.recipe-image {
-  width: 200px;
+.sort-options {
+  margin: 36px;
+  select {
+    margin: 0 16px;
+  }
+}
+
+.recipe {
+  margin: 24px;
+  width: 30%;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  &__time {
+    position: absolute;
+    align-self: flex-end;
+    margin: 16px;
+    background-color: #ffd15b;
+    border-radius: 8px;
+    padding: 8px 16px;
+  }
+  &__image {
+    width: 100%;
+    object-fit: cover;
+    height: 300px;
+  }
+  &__title, &__description, &__ingredients {
+    padding: 0 16px;
+  }
+  &__title {
+    font-family: 'Anton';
+    margin: 16px 0;
+  }
 }
