@@ -1,25 +1,49 @@
 <html lang="fr-FR">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="X-UA-Compatible"
+      content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
     <link
       href="styles/main.css"
       rel="stylesheet"
       type="text/css" />
     <title>Les petits plats</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <a href="index.html"><img src="./assets/images/Logo.png" /></a>
-        <section>
-            <h2>Cherchez parmi plus de 1500 recettes<br>du quotidien, simples et délicieuses</h2>
-            <div>
-                <input type="search" />
-                <span>&#9906;</span>
-            </div>
-        </section>
+      <a href="index.html"><img src="./assets/images/Logo.png" /></a>
+      <section>
+        <h2>Cherchez parmi plus de 1500 recettes<br />du quotidien, simples et délicieuses</h2>
+        <div>
+          <input type="search" />
+          <span>&#9906;</span>
+        </div>
+      </section>
     </header>
-    <main id="main"></main>
-</body>
+    <main id="main">
+        <section class="sort-options">
+            <select class="sort-ingredients">
+                <option>Exemple</option>
+                <option>Exemple</option>
+                <option>Exemple</option>
+            </select>
+            <select class="sort-equipment">
+                <option>Exemple</option>
+                <option>Exemple</option>
+                <option>Exemple</option>
+            </select>
+            <select class="sort-ustensil">
+                <option>Exemple</option>
+                <option>Exemple</option>
+                <option>Exemple</option>
+            </select>
+        </section>
+        <section class="search-result"></section>
+    </main>
+    <script src="scripts/pages/search.js" type="module"></script>
+  </body>
 </html>

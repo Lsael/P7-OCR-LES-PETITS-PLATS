@@ -7,11 +7,11 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: "Anton";
 }
 
 body {
     max-width: 1440px;
+    margin: auto;
 }
 
 a {
@@ -26,7 +26,7 @@ header {
     padding: 36px 72px;
 }
 
-section {
+header section {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -34,23 +34,21 @@ section {
     height: 100%;
 }
 
-h1 {
-    color: white;
-}
-
-h2 {
-    color: orange;
+header h2 {
+    color: #FFD15B;
     font-size: 44px;
     text-align: center;
     font-weight: 400;
+    margin: 24px;
+    font-family: "Anton";
 }
 
-input {
+header input {
     border: none;
     width: 100%;
 }
 
-div {
+header div {
     display: flex;
     justify-content: space-between;
     background-color: white;
@@ -60,11 +58,15 @@ div {
     overflow: hidden;
 }
 
-span {
+header span {
     text-align: center;
     background-color: black;
     color: white;
     width: 56px;
     margin: 8px;
     border-radius: 8px;
+}
+
+.recipe-image {
+    width: 200px;
 }
