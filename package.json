@@ -1,0 +1,22 @@
+{
+  "name": "p7",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lsael/P7-OCR-LES-PETITS-PLATS.git"
+  },
+  "author": "Ludovic Saelens",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lsael/P7-OCR-LES-PETITS-PLATS/issues"
+  },
+  "homepage": "https://github.com/Lsael/P7-OCR-LES-PETITS-PLATS#readme",
+  "devDependencies": {
+    "sass": "^1.64.2"
+  }
+}
