@@ -1,8 +1,8 @@
-import { recipes } from "../../database/recipes.js"
-import { displaySearchResults } from "../utils/search.js"
+import { displaySearchResults } from "../algorithms/search.js"
 
 const initHome = () => {
-    displaySearchResults(recipes)
+    displaySearchResults()
+    document.querySelector("#searchInput").addEventListener("input", displaySearchResults)
 }
 
 initHome()
