@@ -7,8 +7,6 @@
 }
 
 body {
-  max-width: 1440px;
-  margin: auto;
   background-color: $lightgrey;
   font-family: "Manrope";
 }
@@ -18,9 +16,9 @@ a {
   color: inherit;
 }
 
-/* Need to change static height */
 header {
   background: url('../assets/images/home-background.png');
+  background-size: cover;
   height: 94vh;
   padding: 36px 72px;
   section {
@@ -59,6 +57,11 @@ header {
     margin: 8px;
     border-radius: 8px;
   }
+}
+
+main {
+  max-width: 1440px;
+  margin: auto;
 }
 
 .sort-options {

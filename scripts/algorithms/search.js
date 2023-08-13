@@ -7,11 +7,27 @@ const getSearchInput = () => {
     return searchInput
 }
 
+const getSortOption = () => {
+    // Will get the chosen option in selects
+}
+
+const sortRecipes = (searchInput) => {
+    const sortedRecipesList = recipes.filter((recipe) => {
+        // Will need to add ingredients in search
+        const { name, description } = recipe
+        const stringToTest = name + " " + description
+
+        return stringToTest.toUpperCase().match(searchInput.toUpperCase())
+    })
+    
+    return sortedRecipesList
+}
+
 const getRecipes = () => {
     const input = getSearchInput()
 
-    const newList = recipes.filter((recipe) => recipe.name.toUpperCase().match(input.toUpperCase()))
-    return newList
+    const sortedRecipes = sortRecipes(input)
+    return sortedRecipes
 }
 
 export const displaySearchResults = () => {
