@@ -1,4 +1,4 @@
-@import "./variables.scss";
+@import "variables";
 
 * {
   box-sizing: border-box;
@@ -39,6 +39,7 @@ header {
   input {
     border: none;
     width: 100%;
+    padding-left: 24px;
   }
   div {
     display: flex;
@@ -67,7 +68,11 @@ main {
 .sort-options {
   margin: 36px;
   select {
+    width: 200px;
     margin: 0 16px;
+    padding: 16px;
+    border: none;
+    border-radius: 8px;
   }
 }
 

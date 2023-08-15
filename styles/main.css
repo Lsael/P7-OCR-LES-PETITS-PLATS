@@ -46,6 +46,7 @@ header h2 {
 header input {
   border: none;
   width: 100%;
+  padding-left: 24px;
 }
 header div {
   display: flex;
@@ -74,7 +75,11 @@ main {
   margin: 36px;
 }
 .sort-options select {
+  width: 200px;
   margin: 0 16px;
+  padding: 16px;
+  border: none;
+  border-radius: 8px;
 }
 
 .search-result {
@@ -104,8 +109,7 @@ main {
 }
 .recipe__image {
   width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   height: 300px;
 }
 .recipe__title, .recipe__description, .recipe__ingredients {

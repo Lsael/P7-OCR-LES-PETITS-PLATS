@@ -1,8 +1,8 @@
-import { displaySearchResults } from "../algorithms/search.js"
+import { displaySearch } from '../algorithms/search.js';
 
 const initHome = () => {
-    displaySearchResults()
-    document.querySelector("#searchInput").addEventListener("input", displaySearchResults)
-}
+  displaySearch();
+  document.querySelector('#searchInput').addEventListener('input', displaySearch);
+};
 
-initHome()
+initHome();
