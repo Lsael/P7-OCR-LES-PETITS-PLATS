@@ -8,22 +8,44 @@ const getSearchInput = () => {
   return searchInput;
 };
 
-const sortRecipes = (searchInput) => {
-  const sortedRecipesList = recipes.filter((recipe) => {
-    // Will need to add ingredients in search
+const getPickedOptions = () => {
+  const ingredient = document.querySelector('.ingredients-options').value;
+  const appliance = document.querySelector('.appliances-options').value;
+  const ustensil = document.querySelector('.ustensils-options').value;
+
+  return { ingredient, appliance, ustensil };
+};
+
+const sortByInput = (searchInput) => {
+  const sortedList = recipes.filter((recipe) => {
     const { name, description } = recipe;
-    const stringToTest = name + ' ' + description;
+    const ingredients = recipe.ingredients.map((ingredient) => ingredient.ingredient).join(' ');
+    const stringToTest = name + ' ' + description + ' ' + ingredients;
 
     return stringToTest.toUpperCase().match(searchInput.toUpperCase());
   });
 
-  return sortedRecipesList;
+  return sortedList;
+};
+
+const sortByOptions = (recipes, pickedOptions) => {
+  const sortedList = pickedOptions.appliance.length !== 0 ? recipes.filter((recipe) => recipe.appliance === pickedOptions.appliance) : recipes;
+
+  return sortedList;
+};
+
+const sortRecipes = (input, options) => {
+  const filteredList = sortByInput(input);
+  const sortedList = sortByOptions(filteredList, options);
+
+  return sortedList;
 };
 
 const getRecipes = () => {
   const input = getSearchInput();
+  const options = getPickedOptions();
 
-  const sortedRecipes = sortRecipes(input);
+  const sortedRecipes = sortRecipes(input, options);
   return sortedRecipes;
 };
 
@@ -67,9 +89,9 @@ const displaySortOptions = (recipes) => {
   const appliancesOptionsElement = document.querySelector('.appliances-options');
   const ustensilsOptionsElement = document.querySelector('.ustensils-options');
 
-  ingredientsOptionsElement.innerHTML = useOptionsTemplate("Ingrédients", ingredients)
-  appliancesOptionsElement.innerHTML = useOptionsTemplate("Appareils", appliances)
-  ustensilsOptionsElement.innerHTML = useOptionsTemplate("Usentiles", ustensils)
+  ingredientsOptionsElement.innerHTML = useOptionsTemplate('Ingrédients', ingredients);
+  appliancesOptionsElement.innerHTML = useOptionsTemplate('Appareils', appliances);
+  ustensilsOptionsElement.innerHTML = useOptionsTemplate('Usentiles', ustensils);
 };
 
 const displaySearchResults = (recipes) => {
@@ -82,8 +104,8 @@ const displaySearchResults = (recipes) => {
 };
 
 export const displaySearch = () => {
-    const recipes = getRecipes();
+  const recipes = getRecipes();
 
-    displaySortOptions(recipes)
-    displaySearchResults(recipes)
-}
+  displaySortOptions(recipes);
+  displaySearchResults(recipes);
+};
