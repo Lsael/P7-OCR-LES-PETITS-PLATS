@@ -29,7 +29,25 @@ const sortByInput = (searchInput) => {
 };
 
 const sortByOptions = (recipes, pickedOptions) => {
-  const sortedList = pickedOptions.appliance.length !== 0 ? recipes.filter((recipe) => recipe.appliance === pickedOptions.appliance) : recipes;
+  const isValid = (recipe) => {
+    let valid = false;
+    recipe.ingredients.map((ingredient) => {
+      if(ingredient.ingredient === pickedOptions.ingredient) {
+        return valid = true;
+      }
+    })
+    
+    if(recipe.appliance === pickedOptions.appliance) {return valid = true}
+
+    recipe.ustensils.map((ustensil) => {
+      if(ustensil === pickedOptions.ustensil) {
+        return valid = true;
+      }
+    })
+    return valid
+  }
+  
+  const sortedList = ((pickedOptions.ingredient.length || pickedOptions.appliance.length || pickedOptions.ustensil.length) !== 0) ? recipes.filter((recipe) => isValid(recipe)) : recipes;
 
   return sortedList;
 };
@@ -49,7 +67,7 @@ const getRecipes = () => {
   return sortedRecipes;
 };
 
-const getSortOptions = (recipes) => {
+const getSortOptions = () => {
   const getIngredientsOptions = () => {
     let options = [];
     recipes.map((recipe) => {
@@ -83,8 +101,8 @@ const getSortOptions = (recipes) => {
   };
 };
 
-const displaySortOptions = (recipes) => {
-  const { ingredients, appliances, ustensils } = getSortOptions(recipes);
+export const displaySortOptions = () => {
+  const { ingredients, appliances, ustensils } = getSortOptions();
   const ingredientsOptionsElement = document.querySelector('.ingredients-options');
   const appliancesOptionsElement = document.querySelector('.appliances-options');
   const ustensilsOptionsElement = document.querySelector('.ustensils-options');
@@ -98,14 +116,13 @@ const displaySearchResults = (recipes) => {
   const searchElement = document.querySelector('.search-result');
   searchElement.innerHTML = '';
 
-  for (let i = 0; i < recipes.length; i++) {
-    searchElement.innerHTML += useThumbnailTemplate(recipes[i]);
-  }
+  recipes.map((recipe) => {
+    searchElement.innerHTML += useThumbnailTemplate(recipe);
+  })
 };
 
 export const displaySearch = () => {
   const recipes = getRecipes();
 
-  displaySortOptions(recipes);
   displaySearchResults(recipes);
 };
