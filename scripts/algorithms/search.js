@@ -121,8 +121,19 @@ const displaySearchResults = (recipes) => {
   })
 };
 
+const displayRecipesCount = (count) => {
+  const recipesCountElement = document.querySelector('#recipes-count');
+
+  if(count === 0) {
+    recipesCountElement.innerText = "0 recette"
+  } else {
+    recipesCountElement.innerText = count + " recettes"
+  }
+}
+
 export const displaySearch = () => {
   const recipes = getRecipes();
 
+  displayRecipesCount(recipes.length)
   displaySearchResults(recipes);
 };

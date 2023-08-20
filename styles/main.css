@@ -68,11 +68,14 @@ header span {
 
 main {
   max-width: 1440px;
-  margin: auto;
+  margin: 100px;
 }
 
 .sort-options {
-  margin: 36px;
+  margin: 36px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .sort-options select {
   width: 200px;
@@ -82,9 +85,14 @@ main {
   border-radius: 8px;
 }
 
+#recipes-count {
+  font-family: "Anton", Arial, Helvetica, sans-serif;
+  font-size: 21px;
+}
+
 .search-result {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   flex-wrap: wrap;
 }
 
