@@ -79,7 +79,7 @@ main {
 }
 .sort-options select {
   width: 200px;
-  margin: 0 16px;
+  margin-right: 32px;
   padding: 16px;
   border: none;
   border-radius: 8px;
@@ -92,7 +92,7 @@ main {
 
 .search-result {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   flex-wrap: wrap;
 }
 
