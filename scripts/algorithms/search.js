@@ -16,7 +16,7 @@ const sortByOptions = (recipes, pickedOptions) => {
   const validIngredient = (recipe) => {
     let isValid = false
     recipe.ingredients.map((ingredient) => {
-      if((ingredient.ingredient === pickedOptions.ingredient) || pickedOptions.ingredient === '') {
+      if((ingredient.ingredient === pickedOptions.ingredient)) {
         return isValid = true;
       }})
     return isValid
@@ -24,25 +24,31 @@ const sortByOptions = (recipes, pickedOptions) => {
 
   const validAppliance = (recipe) => {
     let isValid = false
-    if((recipe.appliance === pickedOptions.appliance) || pickedOptions.appliance === '') {isValid = true}
+    if((recipe.appliance === pickedOptions.appliance)) {isValid = true}
     return isValid
   }
 
   const validUstensil = (recipe) => {
     let isValid = false
     recipe.ustensils.map((ustensil) => {
-      if((ustensil === pickedOptions.ustensil) || pickedOptions.ustensil === '') {
+      if((ustensil === pickedOptions.ustensil)) {
         return isValid = true;
       }
     })
     return isValid
   }
 
-  filteredList = filteredList.filter(validIngredient)
+  if(pickedOptions.ingredient !== '') {
+    filteredList = filteredList.filter(validIngredient)
+  }
 
-  filteredList = filteredList.filter(validAppliance)
+  if(pickedOptions.appliance !== '') {
+    filteredList = filteredList.filter(validAppliance)
+  }
 
-  filteredList = filteredList.filter(validUstensil)
+  if(pickedOptions.ustensil !== '') {
+    filteredList = filteredList.filter(validUstensil)
+  }
 
   return filteredList;
 };
