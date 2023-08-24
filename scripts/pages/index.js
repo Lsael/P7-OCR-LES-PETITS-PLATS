@@ -32,7 +32,26 @@ const getRecipes = () => {
 
 // need to factorize
 const getSortOptions = () => {
-  const getIngredientsOptions = () => {
+  const getOptions = (category) => {
+    let options = [];
+    recipes.forEach((recipe) => {
+      switch(category) {
+        case 'ingredients': () => {
+          recipe.ingredients.forEach((ingredient) => options.push(ingredient.ingredient));
+        }
+        case 'appliances': () => {
+          options.push(recipe.appliance);
+        }
+        case 'ustensils': () => {
+          recipe.ustensils.forEach((ustensil) => options.push(ustensil));
+        }
+      }
+    });
+    const filteredOptions = [...new Set(options)];
+    return filteredOptions;
+  };
+
+/*   const getIngredientsOptions = () => {
     let options = [];
     recipes.map((recipe) => {
       recipe.ingredients.map((ingredient) => options.push(ingredient.ingredient));
@@ -57,11 +76,11 @@ const getSortOptions = () => {
     });
     const ustensilsOptions = [...new Set(options)];
     return ustensilsOptions;
-  };
+  }; */
   return {
-    ingredients: getIngredientsOptions(),
-    appliances: getApplianceOptions(),
-    ustensils: getUstensilsOptions()
+    ingredients: getOptions('ingredients'),
+    appliances: getOptions('appliances'),
+    ustensils:getOptions('ustensils')
   };
 };
 

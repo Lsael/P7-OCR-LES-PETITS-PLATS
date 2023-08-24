@@ -57,18 +57,13 @@ header div {
   border-radius: 8px;
   overflow: hidden;
 }
-header span {
-  text-align: center;
-  background-color: black;
-  color: white;
-  width: 56px;
-  margin: 8px;
-  border-radius: 8px;
+header img {
+  margin: 6px;
 }
 
 main {
   max-width: 1440px;
-  margin: 100px;
+  margin: 0 100px;
 }
 
 .sort-options {
