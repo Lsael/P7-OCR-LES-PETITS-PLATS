@@ -22,6 +22,10 @@ a {
   color: inherit;
 }
 
+ul {
+  list-style: none;
+}
+
 header {
   background: url("../assets/images/home-background.png");
   background-size: cover;
@@ -52,10 +56,23 @@ header div {
   display: flex;
   justify-content: space-between;
   background-color: white;
-  width: 1000px;
+  width: 70%;
   height: 50px;
   border-radius: 8px;
-  overflow: hidden;
+  position: relative;
+}
+header .suggestions {
+  background-color: white;
+  border-radius: 0 0 8px 8px;
+  width: 90%;
+  position: absolute;
+  top: 104%;
+  left: 4px;
+  z-index: 999;
+}
+header .suggestions li {
+  margin: 4px 0;
+  padding-left: 24px;
 }
 header img {
   margin: 6px;

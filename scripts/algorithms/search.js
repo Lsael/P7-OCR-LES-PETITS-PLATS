@@ -1,4 +1,4 @@
-const sortByInput = (recipes, searchInput) => {
+const filterWithInput = (recipes, searchInput) => {
   const sortedList = recipes.filter((recipe) => {
     const { name, description } = recipe;
     const ingredients = recipe.ingredients.map((ingredient) => ingredient.ingredient).join(' ');
@@ -10,52 +10,53 @@ const sortByInput = (recipes, searchInput) => {
   return sortedList;
 };
 
-const sortByOptions = (recipes, pickedOptions) => {
+const filterWithOptions = (recipes, pickedOptions) => {
   let filteredList = recipes;
 
-  const validIngredient = (recipe) => {
+  const isValid = (recipe, category) => {
     let isValid = false
-    recipe.ingredients.map((ingredient) => {
-      if((ingredient.ingredient === pickedOptions.ingredient)) {
-        return isValid = true;
-      }})
-    return isValid
-  }
+    switch(category) {
+      case 'ingredient': 
+      recipe.ingredients.forEach((ingredient) => {
+          if(ingredient.ingredient === pickedOptions.ingredient) {
+            return isValid = true;
+          }})
+      break;
 
-  const validAppliance = (recipe) => {
-    let isValid = false
-    if((recipe.appliance === pickedOptions.appliance)) {isValid = true}
-    return isValid
-  }
+      case 'appliance': 
+      console.log(pickedOptions)
+      if(recipe.appliance === pickedOptions.appliance) {isValid = true}
+      break;
 
-  const validUstensil = (recipe) => {
-    let isValid = false
-    recipe.ustensils.map((ustensil) => {
-      if((ustensil === pickedOptions.ustensil)) {
-        return isValid = true;
-      }
-    })
+      case 'ustensil':
+        recipe.ustensils.forEach((ustensil) => {
+          if(ustensil === pickedOptions.ustensil) {
+            return isValid = true;
+          }
+        })
+      break;
+    }
     return isValid
   }
 
   if(pickedOptions.ingredient !== '') {
-    filteredList = filteredList.filter(validIngredient)
+    filteredList = filteredList.filter((recipe) => isValid(recipe, 'ingredient'))
   }
 
   if(pickedOptions.appliance !== '') {
-    filteredList = filteredList.filter(validAppliance)
+    filteredList = filteredList.filter((recipe) => isValid(recipe, 'appliance'))
   }
 
   if(pickedOptions.ustensil !== '') {
-    filteredList = filteredList.filter(validUstensil)
+    filteredList = filteredList.filter((recipe) => isValid(recipe, 'ustensil'))
   }
 
   return filteredList;
 };
 
 export const sortRecipes = (recipes, input, options) => {
-  const filteredList = sortByInput(recipes, input);
-  const sortedList = sortByOptions(filteredList, options);
+  const recipesList = filterWithInput(recipes, input);
+  const filteredList = filterWithOptions(recipesList, options);
 
-  return sortedList;
+  return filteredList;
 };

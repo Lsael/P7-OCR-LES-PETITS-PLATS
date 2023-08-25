@@ -17,7 +17,7 @@ const getPickedOptions = () => {
   return { ingredient, appliance, ustensil };
 };
 
-const getRecipes = () => {
+const getFilteredRecipes = () => {
   const input = getSearchInput();
   const options = getPickedOptions();
 
@@ -34,49 +34,22 @@ const getRecipes = () => {
 const getSortOptions = () => {
   const getOptions = (category) => {
     let options = [];
-    recipes.forEach((recipe) => {
-      switch(category) {
-        case 'ingredients': () => {
-          recipe.ingredients.forEach((ingredient) => options.push(ingredient.ingredient));
-        }
-        case 'appliances': () => {
-          options.push(recipe.appliance);
-        }
-        case 'ustensils': () => {
-          recipe.ustensils.forEach((ustensil) => options.push(ustensil));
-        }
-      }
-    });
+    switch(category) {
+      case 'ingredients': recipes.forEach((recipe) => {
+        recipe.ingredients.forEach((ingredient) => options.push(ingredient.ingredient));
+      })
+      case 'appliances': recipes.forEach((recipe) => {
+        options.push(recipe.appliance);
+      })
+      case 'ustensils': recipes.forEach((recipe) => {
+        recipe.ustensils.forEach((ustensil) => options.push(ustensil));
+      })
+    }
+
     const filteredOptions = [...new Set(options)];
     return filteredOptions;
   };
 
-/*   const getIngredientsOptions = () => {
-    let options = [];
-    recipes.map((recipe) => {
-      recipe.ingredients.map((ingredient) => options.push(ingredient.ingredient));
-    });
-    const ingredientsOptions = [...new Set(options)];
-    return ingredientsOptions;
-  };
-
-  const getApplianceOptions = () => {
-    let options = [];
-    recipes.map((recipe) => {
-      options.push(recipe.appliance);
-    });
-    const applianceOptions = [...new Set(options)];
-    return applianceOptions;
-  };
-
-  const getUstensilsOptions = () => {
-    let options = [];
-    recipes.map((recipe) => {
-      recipe.ustensils.map((ustensil) => options.push(ustensil));
-    });
-    const ustensilsOptions = [...new Set(options)];
-    return ustensilsOptions;
-  }; */
   return {
     ingredients: getOptions('ingredients'),
     appliances: getOptions('appliances'),
@@ -94,6 +67,17 @@ const displaySortOptions = () => {
   appliancesOptionsElement.innerHTML = useOptionsTemplate('Appareils', appliances);
   ustensilsOptionsElement.innerHTML = useOptionsTemplate('Usentiles', ustensils);
 };
+
+const displaySuggestions = () => {
+  const recipes = getFilteredRecipes()
+  const suggestionsElement = document.querySelector(".suggestions")
+  suggestionsElement.innerHTML = ''
+
+  recipes.forEach((recipe) => {
+    console.log(recipe)
+    document.querySelector(".suggestions").innerHTML += `<li>${recipe.name}</li>`
+  })
+}
 
 const displaySearchResults = (recipes) => {
   const searchElement = document.querySelector('.search-result');
@@ -115,7 +99,7 @@ const displayRecipesCount = (count) => {
 }
 
 const displaySearch = () => {
-  const recipes = getRecipes();
+  const recipes = getFilteredRecipes();
 
   displayRecipesCount(recipes.length)
   displaySearchResults(recipes);
@@ -124,7 +108,7 @@ const displaySearch = () => {
 const initHome = () => {
   displaySortOptions();
   displaySearch();
-  document.querySelector('#searchInput').addEventListener('input', displaySearch);
+  document.querySelector('#searchInput').addEventListener('input', displaySuggestions);
   document.querySelector('.ingredients-options').addEventListener('change', displaySearch);
   document.querySelector('.appliances-options').addEventListener('change', displaySearch);
   document.querySelector('.ustensils-options').addEventListener('change', displaySearch);
