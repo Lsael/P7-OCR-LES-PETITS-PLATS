@@ -39,24 +39,26 @@ const filterWithOptions = (recipes, pickedOptions) => {
     return isValid
   }
 
-  if(pickedOptions.ingredient !== '') {
+  if(pickedOptions.ingredient) {
     filteredList = filteredList.filter((recipe) => isValid(recipe, 'ingredient'))
   }
 
-  if(pickedOptions.appliance !== '') {
+  if(pickedOptions.appliance) {
     filteredList = filteredList.filter((recipe) => isValid(recipe, 'appliance'))
   }
 
-  if(pickedOptions.ustensil !== '') {
+  if(pickedOptions.ustensil) {
     filteredList = filteredList.filter((recipe) => isValid(recipe, 'ustensil'))
   }
 
   return filteredList;
 };
 
-export const sortRecipes = (recipes, input, options) => {
+export const filterRecipes = (recipes, input, options) => {
   const recipesList = filterWithInput(recipes, input);
   const filteredList = filterWithOptions(recipesList, options);
+
+  console.log(recipes, input, options)
 
   return filteredList;
 };

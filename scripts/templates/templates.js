@@ -1,3 +1,18 @@
+export const useOptionsTemplate = (category, options) => {
+  return `
+    <div class="options-title">
+      <h3>${category}</h3>
+      <span>&#10094;</span>
+    </div>
+    <input type="text" />
+    <ul>
+    ${options.map((option) => {
+      return `<li value="${option}">${option}</li>`
+    }).join('')}
+    </ul>
+    `;
+};
+
 export const useThumbnailTemplate = (recipe) => {
   const { name, image, time, description, ingredients } = recipe;
 
