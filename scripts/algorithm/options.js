@@ -1,7 +1,7 @@
 import { useOptionsTemplate } from "../templates/templates.js";
-import { recipes } from "../../database/recipes.js";
+import { displayOptionsMenu } from "../utils/utils.js";
 
-const getSortOptions = () => {
+const getSortOptions = (recipes) => {
     const getOptions = (category) => {
       let options = [];
       switch(category) {
@@ -27,8 +27,8 @@ const getSortOptions = () => {
     };
   };
   
-export const displaySortOptions = () => {
-    const { ingredients, appliances, ustensils } = getSortOptions();
+export const displaySortOptions = (recipes) => {
+    const { ingredients, appliances, ustensils } = getSortOptions(recipes);
     const ingredientsOptionsElement = document.querySelector('.ingredients-options');
     const appliancesOptionsElement = document.querySelector('.appliances-options');
     const ustensilsOptionsElement = document.querySelector('.ustensils-options');

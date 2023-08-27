@@ -104,6 +104,7 @@ main {
 }
 .sort-options input {
   height: 36px;
+  outline: none;
 }
 .sort-options .options-menu {
   position: absolute;

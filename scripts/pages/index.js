@@ -26,21 +26,22 @@ const displaySearchResults = (recipes) => {
   });
 };
 
+const setListeners = () => {
+  document.querySelector('#searchInput').addEventListener('input', displaySearch);
+  document.querySelectorAll('.options-title').forEach((element, index) => element.addEventListener('click', () => displayOptionsMenu(element, index)));
+};
+
 const displaySearch = () => {
   const recipes = getFilteredRecipes();
 
+  displaySortOptions(recipes);
   displayRecipesCount(recipes.length);
   displaySearchResults(recipes);
+  setListeners();
 };
 
 const initHome = () => {
-  displaySortOptions();
   displaySearch();
-
-  document.querySelector('#searchInput').addEventListener('input', displaySearch);
-  document
-    .querySelectorAll('.options-title')
-    .forEach((element, index) => element.addEventListener('click', () => displayOptionsMenu(element, index)));
 };
 
 initHome();
