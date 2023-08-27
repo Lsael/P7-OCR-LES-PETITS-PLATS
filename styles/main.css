@@ -31,19 +31,6 @@ header {
   background-size: cover;
   height: 94vh;
   padding: 36px 72px;
-  /*   .suggestions {
-      background-color: white;
-      border-radius: 0 0 8px 8px;
-      width: 90%;
-      position: absolute;
-      top: 104%;
-      left: 4px;
-      z-index: 999;
-      li {
-        margin: 4px 0;
-        padding-left: 24px;
-      }
-    } */
 }
 header section {
   display: flex;
@@ -89,10 +76,24 @@ main {
   margin: 36px 0;
   position: relative;
   display: flex;
+  border-radius: 8px;
+}
+.sort-options .options-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 200px;
+  margin-right: 32px;
+  background-color: white;
+  border: none;
+  border-radius: 8px;
 }
 .sort-options .options-title {
   display: flex;
   justify-content: space-between;
+  padding: 16px;
+  width: 100%;
+  cursor: pointer;
 }
 .sort-options .options-title span {
   transform: rotate(270deg);
@@ -101,19 +102,26 @@ main {
   font-size: 16px;
   font-weight: 400;
 }
-.sort-options .options-list {
-  display: flex;
-  flex-direction: column;
-  width: 200px;
-  margin-right: 32px;
-  padding: 16px;
-  background-color: white;
-  border: none;
-  border-radius: 8px;
+.sort-options input {
+  height: 36px;
 }
-.sort-options ul {
-  position: static;
+.sort-options .options-menu {
+  position: absolute;
   top: 100%;
+  background-color: white;
+  width: 200px;
+  padding: 16px;
+  z-index: 100;
+  transition: 0.4s;
+  border-radius: 0 0 8px 8px;
+  transform: translate(0, -8px);
+}
+.sort-options .options-menu li {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  line-height: 1.8;
+  cursor: pointer;
 }
 
 #recipes-count {
@@ -153,6 +161,7 @@ main {
   width: 100%;
   object-fit: cover;
   height: 300px;
+  aspect-ratio: 1;
 }
 .recipe__title, .recipe__description, .recipe__ingredients {
   padding: 0 24px;

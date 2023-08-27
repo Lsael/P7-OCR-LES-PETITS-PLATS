@@ -1,18 +1,17 @@
 import { filterRecipes } from '../algorithm/search.js';
 import { recipes } from '../../database/recipes.js';
-import { useThumbnailTemplate } from '../templates/templates.js'
-import { getPickedOptions, getSearchInput, displayRecipesCount } from '../utils/utils.js';
+import { useThumbnailTemplate } from '../templates/templates.js';
+import { getPickedOptions, getSearchInput, displayRecipesCount, displayOptionsMenu } from '../utils/utils.js';
 import { displaySortOptions } from '../algorithm/options.js';
-
 
 export const getFilteredRecipes = () => {
   const input = getSearchInput();
   const options = getPickedOptions();
 
   const filteredRecipes = filterRecipes(recipes, input, options);
-  
+
   // function to test with 500 recipes
-/*   let sortedRecipes = sortRecipes(recipes, input, options);
+  /*   let sortedRecipes = sortRecipes(recipes, input, options);
   sortedRecipes = [].concat(...Array(10).fill(sortedRecipes)) */
 
   return filteredRecipes;
@@ -24,13 +23,13 @@ const displaySearchResults = (recipes) => {
 
   recipes.forEach((recipe) => {
     searchElement.innerHTML += useThumbnailTemplate(recipe);
-  })
+  });
 };
 
 const displaySearch = () => {
   const recipes = getFilteredRecipes();
 
-  displayRecipesCount(recipes.length)
+  displayRecipesCount(recipes.length);
   displaySearchResults(recipes);
 };
 
@@ -39,7 +38,9 @@ const initHome = () => {
   displaySearch();
 
   document.querySelector('#searchInput').addEventListener('input', displaySearch);
-/*   document.querySelector('.options-list').addEventListener('change', displaySearch); */
+  document
+    .querySelectorAll('.options-title')
+    .forEach((element, index) => element.addEventListener('click', () => displayOptionsMenu(element, index)));
 };
 
 initHome();

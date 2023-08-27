@@ -4,12 +4,14 @@ export const useOptionsTemplate = (category, options) => {
       <h3>${category}</h3>
       <span>&#10094;</span>
     </div>
-    <input type="text" />
-    <ul>
-    ${options.map((option) => {
-      return `<li value="${option}">${option}</li>`
-    }).join('')}
-    </ul>
+    <div class="options-menu" style="opacity: 0;">
+      <input type="search" />
+      <ul>
+      ${options.map((option) => {
+        return `<li value="${option}">${option}</li>`
+      }).join('')}
+      </ul>
+    </div>
     `;
 };
 

@@ -21,3 +21,16 @@ export const displayRecipesCount = (count) => {
     recipesCountElement.innerText = count + ' recettes';
   }
 };
+
+export const displayOptionsMenu = (element, index) => {
+  const arrow = element.children[1]
+  const menu = document.querySelectorAll(`.options-menu`)[index];
+
+  if(menu.style.opacity == 1) {
+    arrow.style.rotate = "0deg"
+    menu.style.opacity = "0";
+  } else if(menu.style.opacity == 0) {
+    arrow.style.rotate = "180deg"
+    menu.style.opacity = "1";
+  }
+};
