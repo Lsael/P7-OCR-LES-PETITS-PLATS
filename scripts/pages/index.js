@@ -2,7 +2,7 @@ import { filterRecipes } from '../algorithm/search.js';
 import { recipes } from '../../database/recipes.js';
 import { useThumbnailTemplate } from '../templates/templates.js';
 import { getPickedOptions, getSearchInput, displayRecipesCount, displayOptionsMenu } from '../utils/utils.js';
-import { displaySortOptions } from '../algorithm/options.js';
+import { displaySortOptions, selectOption } from '../algorithm/options.js';
 
 export const getFilteredRecipes = () => {
   const input = getSearchInput();
@@ -29,6 +29,7 @@ const displaySearchResults = (recipes) => {
 const setListeners = () => {
   document.querySelector('#searchInput').addEventListener('input', displaySearch);
   document.querySelectorAll('.options-title').forEach((element, index) => element.addEventListener('click', () => displayOptionsMenu(element, index)));
+  document.querySelectorAll('.option').forEach((element) => element.addEventListener('click', () => selectOption(element)));
 };
 
 const displaySearch = () => {

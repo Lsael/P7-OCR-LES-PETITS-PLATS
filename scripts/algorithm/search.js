@@ -24,7 +24,6 @@ const filterWithOptions = (recipes, pickedOptions) => {
       break;
 
       case 'appliance': 
-      console.log(pickedOptions)
       if(recipe.appliance === pickedOptions.appliance) {isValid = true}
       break;
 
@@ -57,8 +56,6 @@ const filterWithOptions = (recipes, pickedOptions) => {
 export const filterRecipes = (recipes, input, options) => {
   const recipesList = filterWithInput(recipes, input);
   const filteredList = filterWithOptions(recipesList, options);
-
-  console.log(recipes, input, options)
 
   return filteredList;
 };

@@ -29,8 +29,12 @@ export const displayOptionsMenu = (element, index) => {
   if(menu.style.opacity == 1) {
     arrow.style.rotate = "0deg"
     menu.style.opacity = "0";
+    menu.style.visibility = "none";
+    menu.style.zIndex = "-10";
   } else if(menu.style.opacity == 0) {
     arrow.style.rotate = "180deg"
     menu.style.opacity = "1";
+    menu.style.visibility = "visible";
+    menu.style.zIndex = "999";
   }
 };

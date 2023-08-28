@@ -73,7 +73,7 @@ main {
 }
 
 .sort-options {
-  margin: 36px 0;
+  margin: 16px 0;
   position: relative;
   display: flex;
   border-radius: 8px;
@@ -123,6 +123,22 @@ main {
   text-overflow: ellipsis;
   line-height: 1.8;
   cursor: pointer;
+}
+
+.picked-options {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.picked-options p {
+  padding: 16px;
+  margin-bottom: 16px;
+  margin-right: 32px;
+  background-color: #ffd15b;
+  border-radius: 8px;
+}
+.picked-options p span {
+  margin-right: 60px;
 }
 
 #recipes-count {

@@ -8,7 +8,7 @@ export const useOptionsTemplate = (category, options) => {
       <input type="search" />
       <ul>
       ${options.map((option) => {
-        return `<li value="${option}">${option}</li>`
+        return `<li class="option">${option}</li>`
       }).join('')}
       </ul>
     </div>

@@ -1,5 +1,4 @@
 import { useOptionsTemplate } from "../templates/templates.js";
-import { displayOptionsMenu } from "../utils/utils.js";
 
 const getSortOptions = (recipes) => {
     const getOptions = (category) => {
@@ -37,3 +36,10 @@ export const displaySortOptions = (recipes) => {
     appliancesOptionsElement.innerHTML = useOptionsTemplate('Appareils', appliances);
     ustensilsOptionsElement.innerHTML = useOptionsTemplate('Usentiles', ustensils);
 };
+
+export const selectOption = (element) => {
+  const option = element.textContent
+  const pickedOptionElement = document.querySelector(".picked-options")
+
+  pickedOptionElement.innerHTML += `<p><span>${option}</span><img src="./assets/images/cross.png" alt="remove option"></p>`
+}
