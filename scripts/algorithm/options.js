@@ -1,4 +1,4 @@
-import { useOptionsTemplate } from "../templates/templates.js";
+import { useOptionsTemplate, usePickedOptionTemplate } from "../templates/templates.js";
 
 const getSortOptions = (recipes) => {
     const getOptions = (category) => {
@@ -37,9 +37,40 @@ export const displaySortOptions = (recipes) => {
     ustensilsOptionsElement.innerHTML = useOptionsTemplate('Usentiles', ustensils);
 };
 
-export const selectOption = (element) => {
+export const displayOptionsMenu = (element, index) => {
+  const arrow = element.children[1]
+  const menu = document.querySelectorAll(`.options-menu`)[index];
+
+  if(menu.style.opacity == 1) {
+    arrow.style.rotate = "0deg"
+    menu.style.opacity = "0";
+    menu.style.transform = "translate(0,-9999px)";
+  } else if(menu.style.opacity == 0) {
+    arrow.style.rotate = "180deg"
+    menu.style.opacity = "1";
+    menu.style.transform = "translate(0, -8px)";
+  }
+};
+
+const handleClickRemoveOption = () => {
+  document.querySelectorAll('.option-remove').forEach((element, index) => element.addEventListener('click', () => removeOption(index)));
+}
+
+export const pickOption = (element) => {
   const option = element.textContent
   const pickedOptionElement = document.querySelector(".picked-options")
 
-  pickedOptionElement.innerHTML += `<p><span>${option}</span><img src="./assets/images/cross.png" alt="remove option"></p>`
+  pickedOptionElement.innerHTML += usePickedOptionTemplate(option)
+
+  handleClickRemoveOption()
+}
+
+export const removeOption = (index) => {
+  const option = document.querySelectorAll('.picked-options > p')[index]
+
+  if(option) {
+    option.remove()
+  }
+
+  handleClickRemoveOption()
 }

@@ -15,6 +15,14 @@ export const useOptionsTemplate = (category, options) => {
     `;
 };
 
+export const usePickedOptionTemplate = (option) => {
+  return `
+  <p>
+    <span>${option}</span>
+    <img class="option-remove" src="./assets/images/cross.png" alt="remove option">
+  </p>`
+}
+
 export const useThumbnailTemplate = (recipe) => {
   const { name, image, time, description, ingredients } = recipe;
 

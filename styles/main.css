@@ -113,9 +113,8 @@ main {
   width: 200px;
   padding: 16px;
   z-index: 100;
-  transition: 0.4s;
   border-radius: 0 0 8px 8px;
-  transform: translate(0, -8px);
+  transform: translate(0, -9999px);
 }
 .sort-options .options-menu li {
   overflow: hidden;
@@ -139,6 +138,9 @@ main {
 }
 .picked-options p span {
   margin-right: 60px;
+}
+.picked-options p .option-remove {
+  cursor: pointer;
 }
 
 #recipes-count {
