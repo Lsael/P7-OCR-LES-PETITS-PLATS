@@ -105,6 +105,7 @@ main {
 .sort-options input {
   height: 36px;
   outline: none;
+  margin-bottom: 8px;
 }
 .sort-options .options-menu {
   position: absolute;
@@ -115,6 +116,18 @@ main {
   z-index: 100;
   border-radius: 0 0 8px 8px;
   transform: translate(0, -9999px);
+}
+.sort-options .options-menu ul {
+  max-height: 50vh;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+}
+.sort-options .options-menu ul::-webkit-scrollbar {
+  width: 8px;
+}
+.sort-options .options-menu ul::-webkit-scrollbar-thumb {
+  background-color: grey;
+  border-radius: 8px;
 }
 .sort-options .options-menu li {
   overflow: hidden;

@@ -1,10 +1,10 @@
-const filterWithInput = (recipes, searchInput) => {
+const filterWithInput = (recipes, title) => {
   const sortedList = recipes.filter((recipe) => {
     const { name, description } = recipe;
     const ingredients = recipe.ingredients.map((ingredient) => ingredient.ingredient).join(' ');
     const stringToTest = name + ' ' + description + ' ' + ingredients;
 
-    return stringToTest.toUpperCase().match(searchInput.toUpperCase());
+    return stringToTest.toUpperCase().match(title.toUpperCase());
   });
 
   return sortedList;
@@ -53,8 +53,8 @@ const filterWithOptions = (recipes, pickedOptions) => {
   return filteredList;
 };
 
-export const filterRecipes = (recipes, input, options) => {
-  const recipesList = filterWithInput(recipes, input);
+export const filterRecipes = (recipes, title, options) => {
+  const recipesList = title ? filterWithInput(recipes, title) : recipes;
   const filteredList = filterWithOptions(recipesList, options);
 
   return filteredList;

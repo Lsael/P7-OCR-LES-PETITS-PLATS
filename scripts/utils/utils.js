@@ -4,14 +4,6 @@ export const getSearchInput = () => {
   return searchInput;
 };
 
-export const getPickedOptions = () => {
-  const ingredient = document.querySelector('.ingredients-options').value;
-  const appliance = document.querySelector('.appliances-options').value;
-  const ustensil = document.querySelector('.ustensils-options').value;
-
-  return { ingredient, appliance, ustensil };
-};
-
 export const displayRecipesCount = (count) => {
   const recipesCountElement = document.querySelector('#recipes-count');
 

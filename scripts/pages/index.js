@@ -1,18 +1,14 @@
 import { filterRecipes } from '../algorithm/search.js';
 import { recipes } from '../../database/recipes.js';
 import { useThumbnailTemplate } from '../templates/templates.js';
-import { getPickedOptions, getSearchInput, displayRecipesCount  } from '../utils/utils.js';
-import { displaySortOptions, pickOption, displayOptionsMenu } from '../algorithm/options.js';
+import { getSearchInput, displayRecipesCount } from '../utils/utils.js';
+import { displaySortingOptions, pickOption, displayOptionsMenu } from '../algorithm/options.js';
+import { getSearch, updateTitleInUrl } from '../algorithm/url.js';
 
 export const getFilteredRecipes = () => {
-  const input = getSearchInput();
-  const options = getPickedOptions();
+  const { title, options } = getSearch()
 
-  const filteredRecipes = filterRecipes(recipes, input, options);
-
-  // function to test with 500 recipes
-  /*   let sortedRecipes = sortRecipes(recipes, input, options);
-  sortedRecipes = [].concat(...Array(10).fill(sortedRecipes)) */
+  const filteredRecipes = filterRecipes(recipes, title, options);
 
   return filteredRecipes;
 };
@@ -33,9 +29,11 @@ const setListeners = () => {
 };
 
 const displaySearch = () => {
+  const input = getSearchInput()
+  updateTitleInUrl(input)
   const recipes = getFilteredRecipes();
 
-  displaySortOptions(recipes);
+  displaySortingOptions(recipes);
   displayRecipesCount(recipes.length);
   displaySearchResults(recipes);
   setListeners();

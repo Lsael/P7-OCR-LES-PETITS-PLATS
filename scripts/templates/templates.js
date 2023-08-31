@@ -18,7 +18,7 @@ export const useOptionsTemplate = (category, options) => {
 export const usePickedOptionTemplate = (option) => {
   return `
   <p>
-    <span>${option}</span>
+    <span class="option-remove-title">${option}</span>
     <img class="option-remove" src="./assets/images/cross.png" alt="remove option">
   </p>`
 }

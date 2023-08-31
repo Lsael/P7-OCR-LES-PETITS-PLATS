@@ -1,6 +1,7 @@
 import { useOptionsTemplate, usePickedOptionTemplate } from "../templates/templates.js";
+import { addOptionInURL, getSearch, RemoveOptionFromURL } from "./url.js";
 
-const getSortOptions = (recipes) => {
+const getSortingOptions = (recipes) => {
     const getOptions = (category) => {
       let options = [];
       switch(category) {
@@ -26,8 +27,8 @@ const getSortOptions = (recipes) => {
     };
   };
   
-export const displaySortOptions = (recipes) => {
-    const { ingredients, appliances, ustensils } = getSortOptions(recipes);
+export const displaySortingOptions = (recipes) => {
+    const { ingredients, appliances, ustensils } = getSortingOptions(recipes);
     const ingredientsOptionsElement = document.querySelector('.ingredients-options');
     const appliancesOptionsElement = document.querySelector('.appliances-options');
     const ustensilsOptionsElement = document.querySelector('.ustensils-options');
@@ -52,24 +53,36 @@ export const displayOptionsMenu = (element, index) => {
   }
 };
 
+export const pickOption = (element) => {
+  const option = element.textContent
+
+  addOptionInURL("ingredients", option)
+  displayPickedOptions()
+}
+
+export const removeOption = (index) => {
+  const option = document.querySelectorAll('.option-remove-title')[index]?.textContent
+  
+  RemoveOptionFromURL("ingredients", option)
+  displayPickedOptions()
+}
+
 const handleClickRemoveOption = () => {
   document.querySelectorAll('.option-remove').forEach((element, index) => element.addEventListener('click', () => removeOption(index)));
 }
 
-export const pickOption = (element) => {
-  const option = element.textContent
-  const pickedOptionElement = document.querySelector(".picked-options")
+const displayPickedOptions = () => {
+  const { options } = getSearch()
+  const pickedOptionSection = document.querySelector('.picked-options')
+  pickedOptionSection.innerHTML = ''
 
-  pickedOptionElement.innerHTML += usePickedOptionTemplate(option)
-
-  handleClickRemoveOption()
-}
-
-export const removeOption = (index) => {
-  const option = document.querySelectorAll('.picked-options > p')[index]
-
-  if(option) {
-    option.remove()
+  for(const option in options) {
+    if(options[option]){
+      const optionToDisplay = (options[option].length > 1) ? options[option].split(',') : options[option]
+      optionToDisplay.forEach((element) => {
+        pickedOptionSection.innerHTML += usePickedOptionTemplate(element)
+      })
+    }
   }
 
   handleClickRemoveOption()
