@@ -1,5 +1,5 @@
 import { useOptionsTemplate, usePickedOptionTemplate } from "../templates/templates.js";
-import { addOptionInURL, getSearch, RemoveOptionFromURL } from "./url.js";
+import { addOptionInURL, getSearchFromURL, RemoveOptionFromURL } from "./url.js";
 
 const getSortingOptions = (recipes) => {
     const getOptions = (category) => {
@@ -72,7 +72,7 @@ const handleClickRemoveOption = () => {
 }
 
 const displayPickedOptions = () => {
-  const { options } = getSearch()
+  const { options } = getSearchFromURL()
   const pickedOptionSection = document.querySelector('.picked-options')
   pickedOptionSection.innerHTML = ''
 

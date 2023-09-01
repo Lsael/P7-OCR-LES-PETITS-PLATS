@@ -3,14 +3,12 @@ import { recipes } from '../../database/recipes.js';
 import { useThumbnailTemplate } from '../templates/templates.js';
 import { getSearchInput, displayRecipesCount } from '../utils/utils.js';
 import { displaySortingOptions, pickOption, displayOptionsMenu } from '../algorithm/options.js';
-import { getSearch, updateTitleInUrl } from '../algorithm/url.js';
+import { getSearchFromURL, updateTitleInURL } from '../algorithm/url.js';
 
 export const getFilteredRecipes = () => {
-  const { title, options } = getSearch()
+  const { title, options } = getSearchFromURL()
 
-  const filteredRecipes = filterRecipes(recipes, title, options);
-
-  return filteredRecipes;
+  return filterRecipes(recipes, title, options);
 };
 
 const displaySearchResults = (recipes) => {
@@ -30,7 +28,7 @@ const setListeners = () => {
 
 const displaySearch = () => {
   const input = getSearchInput()
-  updateTitleInUrl(input)
+  updateTitleInURL(input)
   const recipes = getFilteredRecipes();
 
   displaySortingOptions(recipes);

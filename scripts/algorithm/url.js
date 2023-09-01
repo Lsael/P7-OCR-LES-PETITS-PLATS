@@ -24,7 +24,7 @@ export const RemoveOptionFromURL = (category, option) => {
   window.history.replaceState('', '', url);
 };
 
-export const updateTitleInUrl = (title) => {
+export const updateTitleInURL = (title) => {
   const url = new URL(window.location);
 
   title.length >= 3 ? url.searchParams.set('title', title) : url.searchParams.delete('title');
@@ -32,19 +32,19 @@ export const updateTitleInUrl = (title) => {
   window.history.replaceState('', '', url);
 };
 
-export const getSearch = () => {
+export const getSearchFromURL = () => {
   const url = new URL(window.location);
-  const title = url.searchParams.get('title');
-  const ingredients = url.searchParams.get('ingredients');
-  const appliances = url.searchParams.get('appliances');
-  const ustensils = url.searchParams.get('ustensils');
+
+  const getParam = (param) => {
+    return url.searchParams.get(param)
+  }
 
   return {
-    title: title,
+    title: getParam('title'),
     options: {
-      ingredients: ingredients,
-      appliances: appliances,
-      ustensils: ustensils
+      ingredients: getParam('ingredients'),
+      appliances: getParam('appliances'),
+      ustensils: getParam('ustensils')
     }
   };
 };
