@@ -22,7 +22,7 @@ ul {
 }
 
 header {
-  background: url('../assets/images/home-background.png');
+  background: url('../assets/images/home-background.webp');
   background-size: cover;
   height: 94vh;
   padding: 36px 72px;
@@ -129,6 +129,9 @@ main {
       line-height: 1.8;
       cursor: pointer;
     }
+    li::first-letter{
+      text-transform: uppercase;
+    }
   }
 }
 
@@ -148,6 +151,9 @@ main {
     .option-remove {
       cursor: pointer;
     }
+  }
+  p::first-letter{
+      text-transform: uppercase;
   }
 }
 

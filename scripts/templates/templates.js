@@ -8,17 +8,24 @@ export const useOptionsTemplate = (category, options) => {
       <input type="search" />
       <ul>
       ${options.map((option) => {
-        return `<li class="option">${option}</li>`
+        switch(category) {
+          case "Ingrédients":
+            return `<li class="ingredients option">${option}</li>`;
+          case "Appareils":
+            return `<li class="appliances option">${option}</li>`;
+          case "Ustensiles":
+            return `<li class="ustensils option">${option}</li>`;
+        }
       }).join('')}
       </ul>
     </div>
     `;
 };
 
-export const usePickedOptionTemplate = (option) => {
+export const usePickedOptionTemplate = (category, option) => {
   return `
   <p>
-    <span class="option-remove-title">${option}</span>
+    <span class="${category} option-remove-title">${option}</span>
     <img class="option-remove" src="./assets/images/cross.png" alt="remove option">
   </p>`
 }

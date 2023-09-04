@@ -16,20 +16,20 @@ const filterWithOptions = (recipes, pickedOptions) => {
   const isValid = (recipe, category) => {
     let isValid = false
     switch(category) {
-      case 'ingredient': 
+      case 'ingredients': 
       recipe.ingredients.forEach((ingredient) => {
-          if(ingredient.ingredient === pickedOptions.ingredient) {
+          if(ingredient.ingredient === pickedOptions.ingredients) {
             return isValid = true;
           }})
       break;
 
-      case 'appliance': 
-      if(recipe.appliance === pickedOptions.appliance) {isValid = true}
+      case 'appliances': 
+      if(recipe.appliance === pickedOptions.appliances) {isValid = true}
       break;
 
-      case 'ustensil':
+      case 'ustensils':
         recipe.ustensils.forEach((ustensil) => {
-          if(ustensil === pickedOptions.ustensil) {
+          if(ustensil === pickedOptions.ustensils) {
             return isValid = true;
           }
         })
@@ -38,16 +38,16 @@ const filterWithOptions = (recipes, pickedOptions) => {
     return isValid
   }
 
-  if(pickedOptions.ingredient) {
-    filteredList = filteredList.filter((recipe) => isValid(recipe, 'ingredient'))
+  if(pickedOptions.ingredients) {
+    filteredList = filteredList.filter((recipe) => isValid(recipe, 'ingredients'))
   }
 
-  if(pickedOptions.appliance) {
-    filteredList = filteredList.filter((recipe) => isValid(recipe, 'appliance'))
+  if(pickedOptions.appliances) {
+    filteredList = filteredList.filter((recipe) => isValid(recipe, 'appliances'))
   }
 
-  if(pickedOptions.ustensil) {
-    filteredList = filteredList.filter((recipe) => isValid(recipe, 'ustensil'))
+  if(pickedOptions.ustensils) {
+    filteredList = filteredList.filter((recipe) => isValid(recipe, 'ustensils'))
   }
 
   return filteredList;

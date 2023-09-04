@@ -1,3 +1,4 @@
+import { displaySearch } from "../pages/index.js";
 import { useOptionsTemplate, usePickedOptionTemplate } from "../templates/templates.js";
 import { addOptionInURL, getSearchFromURL, RemoveOptionFromURL } from "./url.js";
 
@@ -8,12 +9,15 @@ const getSortingOptions = (recipes) => {
         case 'ingredients': recipes.forEach((recipe) => {
           recipe.ingredients.forEach((ingredient) => options.push(ingredient.ingredient));
         })
+        break;
         case 'appliances': recipes.forEach((recipe) => {
           options.push(recipe.appliance);
         })
+        break;
         case 'ustensils': recipes.forEach((recipe) => {
           recipe.ustensils.forEach((ustensil) => options.push(ustensil));
         })
+        break;
       }
   
       const filteredOptions = [...new Set(options)];
@@ -35,10 +39,10 @@ export const displaySortingOptions = (recipes) => {
 
     ingredientsOptionsElement.innerHTML = useOptionsTemplate('Ingrédients', ingredients);
     appliancesOptionsElement.innerHTML = useOptionsTemplate('Appareils', appliances);
-    ustensilsOptionsElement.innerHTML = useOptionsTemplate('Usentiles', ustensils);
+    ustensilsOptionsElement.innerHTML = useOptionsTemplate('Ustensiles', ustensils);
 };
 
-export const displayOptionsMenu = (element, index) => {
+export const OpenCloseOptionsMenu = (element, index) => {
   const arrow = element.children[1]
   const menu = document.querySelectorAll(`.options-menu`)[index];
 
@@ -54,21 +58,26 @@ export const displayOptionsMenu = (element, index) => {
 };
 
 export const pickOption = (element) => {
-  const option = element.textContent
+  const category = element.classList[0]
+  const optionTitle = element.textContent
 
-  addOptionInURL("ingredients", option)
+  addOptionInURL(category, optionTitle)
   displayPickedOptions()
+  displaySearch()
 }
 
 export const removeOption = (index) => {
-  const option = document.querySelectorAll('.option-remove-title')[index]?.textContent
-  
-  RemoveOptionFromURL("ingredients", option)
+  const option = document.querySelectorAll('.option-remove-title')[index]
+  const category = option.classList[0]
+  const optionTitle = option.textContent
+
+  RemoveOptionFromURL(category, optionTitle)
   displayPickedOptions()
 }
 
 const handleClickRemoveOption = () => {
   document.querySelectorAll('.option-remove').forEach((element, index) => element.addEventListener('click', () => removeOption(index)));
+  displaySearch()
 }
 
 const displayPickedOptions = () => {
@@ -80,7 +89,7 @@ const displayPickedOptions = () => {
     if(options[option]){
       const optionToDisplay = (options[option].length > 1) ? options[option].split(',') : options[option]
       optionToDisplay.forEach((element) => {
-        pickedOptionSection.innerHTML += usePickedOptionTemplate(element)
+        pickedOptionSection.innerHTML += usePickedOptionTemplate(option, element)
       })
     }
   }
