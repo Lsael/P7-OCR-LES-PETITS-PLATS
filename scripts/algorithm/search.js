@@ -59,3 +59,41 @@ export const filterRecipes = (recipes, title, options) => {
 
   return filteredList;
 };
+
+const linearSearch = (list, searchTerm) => {
+  let result = false;
+  let count = 0
+  for(let element of list) {
+    if(element == searchTerm) {
+      result = true
+      break;
+    }
+    count += 1
+  }
+  return `result = ${result}, tried ${count} times`
+}
+
+const quickSearch = (list, searchTerm) => {
+  let result = false;
+  let pivot = parseInt(list.length / 2)
+  let count = 0
+  list.sort()
+
+  for(let i=0; i < list.length; i++) {
+    if(list[pivot] == searchTerm) {
+      result = true
+      break;
+    } else if(list[pivot] < searchTerm) {
+      pivot = parseInt(pivot + pivot * 1/4)
+    } else if(list[pivot] > searchTerm) {
+      pivot = parseInt(pivot / 2)
+    }
+    count += 1
+  }
+  return `result = ${result}, tried ${count} times`
+}
+
+const test = ["a","c","b","v","e","z","j","r","t"]
+
+console.log(linearSearch(test, "t"))
+console.log(quickSearch(test, "t"))
