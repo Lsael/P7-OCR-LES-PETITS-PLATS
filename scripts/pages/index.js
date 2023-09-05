@@ -2,8 +2,9 @@ import { filterRecipes } from '../algorithm/search.js';
 import { recipes } from '../../database/recipes.js';
 import { useThumbnailTemplate } from '../templates/templates.js';
 import { getSearchInput, displayRecipesCount } from '../utils/utils.js';
-import { displaySortingOptions, pickOption, OpenCloseOptionsMenu } from '../algorithm/options.js';
+import { displaySortingOptions } from '../algorithm/options.js';
 import { getSearchFromURL, updateTitleInURL } from '../algorithm/url.js';
+import { handleClickPickOption, handleMainSearchInput, handleMenuOpenClose, handleOptionSearchInput } from '../utils/listeners.js';
 
 export const getFilteredRecipes = () => {
   const { title, options } = getSearchFromURL()
@@ -21,9 +22,10 @@ const displaySearchResults = (recipes) => {
 };
 
 const setListeners = () => {
-  document.querySelector('#searchInput').addEventListener('input', displaySearch);
-  document.querySelectorAll('.options-title').forEach((element, index) => element.addEventListener('click', () => OpenCloseOptionsMenu(element, index)));
-  document.querySelectorAll('.option').forEach((element) => element.addEventListener('click', () => pickOption(element)));
+  handleMainSearchInput()
+  handleMenuOpenClose()
+  handleOptionSearchInput()
+  handleClickPickOption()
 };
 
 export const displaySearch = () => {
@@ -31,7 +33,7 @@ export const displaySearch = () => {
   updateTitleInURL(input)
   const recipes = getFilteredRecipes();
 
-  displaySortingOptions(recipes);
+  displaySortingOptions();
   displayRecipesCount(recipes.length);
   displaySearchResults(recipes);
   setListeners();

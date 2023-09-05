@@ -63,8 +63,10 @@ header div {
   border-radius: 8px;
   position: relative;
 }
-header img {
+header .search-icon {
   margin: 6px;
+  height: 38px;
+  aspect-ratio: 1/1;
 }
 
 main {

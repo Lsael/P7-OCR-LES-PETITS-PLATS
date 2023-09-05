@@ -1,3 +1,5 @@
+import { translateTitle } from "../utils/utils.js";
+
 export const useOptionsTemplate = (category, options) => {
   return `
     <div class="options-title">
@@ -5,17 +7,10 @@ export const useOptionsTemplate = (category, options) => {
       <span>&#10094;</span>
     </div>
     <div class="options-menu" style="opacity: 0;">
-      <input type="search" />
-      <ul>
+      <input type="search" class="${translateTitle(category)}-search" />
+      <ul class="${translateTitle(category)}-menu">
       ${options.map((option) => {
-        switch(category) {
-          case "Ingrédients":
-            return `<li class="ingredients option">${option}</li>`;
-          case "Appareils":
-            return `<li class="appliances option">${option}</li>`;
-          case "Ustensiles":
-            return `<li class="ustensils option">${option}</li>`;
-        }
+            return `<li class="${translateTitle(category)} option">${option}</li>`;
       }).join('')}
       </ul>
     </div>

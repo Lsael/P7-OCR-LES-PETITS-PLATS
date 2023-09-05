@@ -1,37 +1,60 @@
-import { displaySearch } from "../pages/index.js";
+import { displaySearch, getFilteredRecipes } from "../pages/index.js";
 import { useOptionsTemplate, usePickedOptionTemplate } from "../templates/templates.js";
+import { handleClickPickOption, handleClickRemoveOption } from "../utils/listeners.js";
 import { addOptionInURL, getSearchFromURL, RemoveOptionFromURL } from "./url.js";
 
-const getSortingOptions = (recipes) => {
-    const getOptions = (category) => {
-      let options = [];
-      switch(category) {
-        case 'ingredients': recipes.forEach((recipe) => {
-          recipe.ingredients.forEach((ingredient) => options.push(ingredient.ingredient));
-        })
-        break;
-        case 'appliances': recipes.forEach((recipe) => {
-          options.push(recipe.appliance);
-        })
-        break;
-        case 'ustensils': recipes.forEach((recipe) => {
-          recipe.ustensils.forEach((ustensil) => options.push(ustensil));
-        })
-        break;
-      }
-  
-      const filteredOptions = [...new Set(options)];
-      return filteredOptions;
-    };
-  
+const getOptions = (recipes, category) => {
+  let options = [];
+  switch(category) {
+    case 'ingredients': recipes.forEach((recipe) => {
+      recipe.ingredients.forEach((ingredient) => {
+          options.push(ingredient.ingredient)
+      });
+    })
+    break;
+    case 'appliances': recipes.forEach((recipe) => {
+      options.push(recipe.appliance);
+    })
+    break;
+    case 'ustensils': recipes.forEach((recipe) => {
+      recipe.ustensils.forEach((ustensil) => options.push(ustensil));
+    })
+    break;
+  }
+
+  const filteredOptions = [...new Set(options)];
+  return filteredOptions;
+};
+
+const getSortingOptions = () => {
+  const recipes = getFilteredRecipes()
+
     return {
-      ingredients: getOptions('ingredients'),
-      appliances: getOptions('appliances'),
-      ustensils:getOptions('ustensils')
-    };
+      ingredients: getOptions(recipes, 'ingredients'),
+      appliances: getOptions(recipes, 'appliances'),
+      ustensils:getOptions(recipes, 'ustensils')
   };
+};
+
+export const updateSortingOptions = (element) => {
+  const category = element.classList[0].split('-')[0]
+  const menuElement = document.querySelector(`.${category}-menu`)
+  const input = element.value
+  let options = getSortingOptions()[category]
+
+  options = options.filter((option) => {
+    return option.toUpperCase().match(input.toUpperCase())
+  })
   
-export const displaySortingOptions = (recipes) => {
+  menuElement.innerHTML = ""
+  options.forEach((option) => {
+    menuElement.innerHTML += `<li class="${category} option">${option}</li>`
+  })
+  handleClickPickOption()
+}
+
+export const displaySortingOptions = () => {
+    const recipes = getFilteredRecipes()
     const { ingredients, appliances, ustensils } = getSortingOptions(recipes);
     const ingredientsOptionsElement = document.querySelector('.ingredients-options');
     const appliancesOptionsElement = document.querySelector('.appliances-options');
@@ -73,11 +96,6 @@ export const removeOption = (index) => {
 
   RemoveOptionFromURL(category, optionTitle)
   displayPickedOptions()
-}
-
-const handleClickRemoveOption = () => {
-  document.querySelectorAll('.option-remove').forEach((element, index) => element.addEventListener('click', () => removeOption(index)));
-  displaySearch()
 }
 
 const displayPickedOptions = () => {

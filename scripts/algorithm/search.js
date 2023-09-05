@@ -1,5 +1,5 @@
 const filterWithInput = (recipes, title) => {
-  const sortedList = recipes.filter((recipe) => {
+  const filteredList = recipes.filter((recipe) => {
     const { name, description } = recipe;
     const ingredients = recipe.ingredients.map((ingredient) => ingredient.ingredient).join(' ');
     const stringToTest = name + ' ' + description + ' ' + ingredients;
@@ -7,7 +7,7 @@ const filterWithInput = (recipes, title) => {
     return stringToTest.toUpperCase().match(title.toUpperCase());
   });
 
-  return sortedList;
+  return filteredList;
 };
 
 const filterWithOptions = (recipes, pickedOptions) => {

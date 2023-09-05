@@ -57,8 +57,10 @@ header {
     border-radius: 8px;
     position: relative;
   }
-  img {
+  .search-icon {
     margin: 6px;
+    height: 38px;
+    aspect-ratio: 1/1;
   }
 }
 
