@@ -36,6 +36,18 @@ const getSortingOptions = () => {
   };
 };
 
+export const displaySortingOptions = () => {
+    const recipes = getFilteredRecipes()
+    const { ingredients, appliances, ustensils } = getSortingOptions(recipes);
+    const ingredientsOptionsElement = document.querySelector('.ingredients-options');
+    const appliancesOptionsElement = document.querySelector('.appliances-options');
+    const ustensilsOptionsElement = document.querySelector('.ustensils-options');
+
+    ingredientsOptionsElement.innerHTML = useOptionsTemplate('Ingrédients', ingredients);
+    appliancesOptionsElement.innerHTML = useOptionsTemplate('Appareils', appliances);
+    ustensilsOptionsElement.innerHTML = useOptionsTemplate('Ustensiles', ustensils);
+};
+
 export const updateSortingOptions = (element) => {
   const category = element.classList[0].split('-')[0]
   const menuElement = document.querySelector(`.${category}-menu`)
@@ -52,18 +64,6 @@ export const updateSortingOptions = (element) => {
   })
   handleClickPickOption()
 }
-
-export const displaySortingOptions = () => {
-    const recipes = getFilteredRecipes()
-    const { ingredients, appliances, ustensils } = getSortingOptions(recipes);
-    const ingredientsOptionsElement = document.querySelector('.ingredients-options');
-    const appliancesOptionsElement = document.querySelector('.appliances-options');
-    const ustensilsOptionsElement = document.querySelector('.ustensils-options');
-
-    ingredientsOptionsElement.innerHTML = useOptionsTemplate('Ingrédients', ingredients);
-    appliancesOptionsElement.innerHTML = useOptionsTemplate('Appareils', appliances);
-    ustensilsOptionsElement.innerHTML = useOptionsTemplate('Ustensiles', ustensils);
-};
 
 export const OpenCloseOptionsMenu = (element, index) => {
   const arrow = element.children[1]

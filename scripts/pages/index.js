@@ -31,6 +31,7 @@ const setListeners = () => {
 export const displaySearch = () => {
   const input = getSearchInput()
   updateTitleInURL(input)
+  
   const recipes = getFilteredRecipes();
 
   displaySortingOptions();
