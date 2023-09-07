@@ -1,10 +1,10 @@
-const filterWithInput = (recipes, title) => {
+const filterWithInput = (recipes, searchTerm) => {
   const filteredList = recipes.filter((recipe) => {
     const { name, description } = recipe;
     const ingredients = recipe.ingredients.map((ingredient) => ingredient.ingredient).join(' ');
     const stringToTest = name + ' ' + description + ' ' + ingredients;
 
-    return stringToTest.toUpperCase().match(title.toUpperCase());
+    return stringToTest.toUpperCase().match(searchTerm.toUpperCase());
   });
 
   return filteredList;
@@ -17,11 +17,12 @@ const filterWithOptions = (recipes, pickedOptions) => {
     let isValid = false
     switch(category) {
       case 'ingredients': 
-      recipe.ingredients.forEach((ingredient) => {
+      const ingredients = recipe.ingredients.map((ingredient) => ingredient.ingredient)
+      return isValid = quickSearch(ingredients, pickedOptions.ingredients)
+/*       recipe.ingredients.forEach((ingredient) => {
           if(ingredient.ingredient === pickedOptions.ingredients) {
             return isValid = true;
-          }})
-      break;
+          }}) */
 
       case 'appliances': 
       if(recipe.appliance === pickedOptions.appliances) {isValid = true}
@@ -60,6 +61,8 @@ export const filterRecipes = (recipes, title, options) => {
   return filteredList;
 };
 
+
+
 const linearSearch = (list, searchTerm) => {
   let result = false;
   let count = 0
@@ -75,25 +78,26 @@ const linearSearch = (list, searchTerm) => {
 
 const quickSearch = (list, searchTerm) => {
   let result = false;
-  let pivot = parseInt(list.length / 2)
+  let pivot = parseInt((list.length) / 2)
   let count = 0
   list.sort()
 
   for(let i=0; i < list.length; i++) {
-    if(list[pivot] == searchTerm) {
-      result = true
-      break;
+    if(list[pivot].toUpperCase() == searchTerm.toUpperCase()) {
+      return result = true
     } else if(list[pivot] < searchTerm) {
-      pivot = parseInt(pivot + pivot * 1/4)
+      pivot = parseInt((pivot + list.length) /2)
     } else if(list[pivot] > searchTerm) {
       pivot = parseInt(pivot / 2)
     }
     count += 1
   }
-  return `result = ${result}, tried ${count} times`
+  console.log(list[pivot], pivot, result);
+/*   console.log(list[pivot], searchTerm, result); */
+  return result
 }
 
 const test = ["a","c","b","v","e","z","j","r","t"]
 
-console.log(linearSearch(test, "t"))
-console.log(quickSearch(test, "t"))
+/* console.log(linearSearch(test, "t"))
+console.log(quickSearch(test, "t")) */
