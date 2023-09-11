@@ -23,6 +23,7 @@ const getOptions = (recipes, category) => {
   }
 
   const filteredOptions = [...new Set(options)];
+  filteredOptions.sort()
   return filteredOptions;
 };
 

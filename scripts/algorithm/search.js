@@ -27,9 +27,7 @@ const filterWithInput = (recipes, searchTerm) => {
   return filteredList;
 };
 
-// bug : quand on selectionne plusieurs element de la même liste, seul le premier est pris en compte
 // TODO : Afficher les elements séléctionnés sous le select
-// TODO : Trier les résultats par ordre alphabetique
 const filterWithOptions = (recipes, options) => {
   let filteredList = recipes;
 
@@ -71,6 +69,14 @@ const filterWithOptions = (recipes, options) => {
   return filteredList;
 };
 
+const compareName = (a, b) => {
+  if (a.name < b.name)
+     return -1;
+  if (a.name > b.name)
+     return 1;
+  return 0;
+}
+
 export const filterRecipes = (recipes, searchTerm, options) => {
   let filteredList = recipes
 
@@ -81,6 +87,8 @@ export const filterRecipes = (recipes, searchTerm, options) => {
   if(options) {
     filteredList = filterWithOptions(filteredList, options)
   }
+
+  filteredList.sort(compareName)
 
   return filteredList;
 };
