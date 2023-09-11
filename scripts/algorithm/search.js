@@ -15,42 +15,57 @@ const filterWithInput = (recipes, searchTerm) => {
     }
   });
 
+/*     if(search(name.split(' '), searchTerm)) {
+      return true
+    } else if(search(description.split(' '), searchTerm)) {
+      return true
+    } else if(search(ingredients.split(' '), searchTerm)) {
+      return true
+    }
+  }); */
+
   return filteredList;
 };
 
 // bug : quand on selectionne plusieurs element de la même liste, seul le premier est pris en compte
 // TODO : Afficher les elements séléctionnés sous le select
 // TODO : Trier les résultats par ordre alphabetique
-const filterWithOptions = (recipes, pickedOptions) => {
+const filterWithOptions = (recipes, options) => {
   let filteredList = recipes;
 
-  const isValid = (recipe, category) => {
+  const isValid = (recipe, category, option) => {
     let isValid = false
     switch(category) {
       case 'ingredients': 
         const ingredients = recipe.ingredients.map((ingredient) => ingredient.ingredient)
-        return isValid = search(ingredients, pickedOptions.ingredients)
+        return isValid = search(ingredients, option)
 
       case 'appliances': 
-        return isValid = recipe.appliance === pickedOptions.appliances
+        return isValid = recipe.appliance === option
 
       case 'ustensils':
-        return isValid = search(recipe.ustensils, pickedOptions.ustensils)
+        return isValid = search(recipe.ustensils, option)
 
     }
     return isValid
   }
 
-  if(pickedOptions.ingredients) {
-    filteredList = filteredList.filter((recipe) => isValid(recipe, 'ingredients'))
+  if(options.ingredients) {
+    for(let i=0; i < options.ingredients.length; i++) {
+      filteredList = filteredList.filter((recipe) => isValid(recipe, 'ingredients', options.ingredients[i]))
+    }
   }
 
-  if(pickedOptions.appliances) {
-    filteredList = filteredList.filter((recipe) => isValid(recipe, 'appliances'))
+  if(options.appliances) {
+    for(let i=0; i < options.appliances.length; i++) {
+      filteredList = filteredList.filter((recipe) => isValid(recipe, 'appliances', options.appliances[i]))
+    }
   }
 
-  if(pickedOptions.ustensils) {
-    filteredList = filteredList.filter((recipe) => isValid(recipe, 'ustensils'))
+  if(options.ustensils) {
+    for(let i=0; i < options.ustensils.length; i++) {
+      filteredList = filteredList.filter((recipe) => isValid(recipe, 'ustensils', options.ustensils[i]))
+    }
   }
 
   return filteredList;

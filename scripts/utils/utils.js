@@ -4,11 +4,6 @@ export const getSearchInput = () => {
   return searchInput;
 };
 
-export const getOptionsInput = (category) => {
-  const optionInput = document.querySelector(`.${category}-search`)?.value
-  console.log(optionInput)
-}
-
 export const displayRecipesCount = (count) => {
   const recipesCountElement = document.querySelector('#recipes-count');
 

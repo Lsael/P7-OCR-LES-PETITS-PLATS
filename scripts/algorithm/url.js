@@ -42,9 +42,9 @@ export const getSearchFromURL = () => {
   return {
     title: getParam('title'),
     options: {
-      ingredients: getParam('ingredients'),
-      appliances: getParam('appliances'),
-      ustensils: getParam('ustensils')
+      ingredients: getParam('ingredients')?.split(","),
+      appliances: getParam('appliances')?.split(","),
+      ustensils: getParam('ustensils')?.split(",")
     }
   };
 };

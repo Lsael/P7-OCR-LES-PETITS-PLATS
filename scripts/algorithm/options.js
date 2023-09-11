@@ -105,7 +105,7 @@ const displayPickedOptions = () => {
 
   for(const option in options) {
     if(options[option]){
-      const optionToDisplay = (options[option].length > 1) ? options[option].split(',') : options[option]
+      const optionToDisplay = options[option]
       optionToDisplay.forEach((element) => {
         pickedOptionSection.innerHTML += usePickedOptionTemplate(option, element)
       })
