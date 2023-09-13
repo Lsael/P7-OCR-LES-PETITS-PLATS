@@ -1,6 +1,7 @@
 import { displaySearch, getFilteredRecipes } from "../pages/index.js";
 import { useOptionsTemplate, usePickedOptionTemplate } from "../templates/templates.js";
 import { handleClickPickOption, handleClickRemoveOption } from "../utils/listeners.js";
+import { search } from "./search/quickSearch.js";
 import { addOptionInURL, getSearchFromURL, RemoveOptionFromURL } from "./url.js";
 
 const getOptions = (recipes, category) => {
@@ -22,9 +23,9 @@ const getOptions = (recipes, category) => {
     break;
   }
 
-  const filteredOptions = [...new Set(options)];
-  filteredOptions.sort()
-  return filteredOptions;
+  options = [...new Set(options)];
+  options.sort()
+  return options;
 };
 
 const getSortingOptions = () => {
@@ -37,16 +38,31 @@ const getSortingOptions = () => {
   };
 };
 
+// TODO : à Factoriser
+// Bug : Parfois les "picked options" apparaissent toujours dans la liste
+
 export const displaySortingOptions = () => {
     const recipes = getFilteredRecipes()
-    const { ingredients, appliances, ustensils } = getSortingOptions(recipes);
-    const ingredientsOptionsElement = document.querySelector('.ingredients-options');
-    const appliancesOptionsElement = document.querySelector('.appliances-options');
-    const ustensilsOptionsElement = document.querySelector('.ustensils-options');
+    let { ingredients, appliances, ustensils } = getSortingOptions(recipes);
+    const pickedOptions = getSearchFromURL().options
 
-    ingredientsOptionsElement.innerHTML = useOptionsTemplate('Ingrédients', ingredients);
-    appliancesOptionsElement.innerHTML = useOptionsTemplate('Appareils', appliances);
-    ustensilsOptionsElement.innerHTML = useOptionsTemplate('Ustensiles', ustensils);
+    if(pickedOptions.ingredients) {
+      ingredients = ingredients.filter((ingredient) => !search(pickedOptions.ingredients, ingredient))
+    }
+    const ingredientsOptionsElement = document.querySelector('.ingredients-options');
+    ingredientsOptionsElement.innerHTML = useOptionsTemplate('Ingrédients', pickedOptions.ingredients, ingredients);
+
+    if(pickedOptions.appliances) {
+      appliances = appliances.filter((appliance) => !search(pickedOptions.appliances, appliance))
+    }
+    const appliancesOptionsElement = document.querySelector('.appliances-options');
+    appliancesOptionsElement.innerHTML = useOptionsTemplate('Appareils', pickedOptions.appliances, appliances);
+    
+    if(pickedOptions.ustensils) {
+      ustensils = ustensils.filter((ustensil) => !search(pickedOptions.ustensils, ustensil))
+    }
+    const ustensilsOptionsElement = document.querySelector('.ustensils-options');
+    ustensilsOptionsElement.innerHTML = useOptionsTemplate('Ustensiles', pickedOptions.ustensils, ustensils);
 };
 
 export const updateSortingOptions = (element) => {
@@ -99,16 +115,16 @@ export const removeOption = (index) => {
   displayPickedOptions()
 }
 
-const displayPickedOptions = () => {
+export const displayPickedOptions = () => {
   const { options } = getSearchFromURL()
   const pickedOptionSection = document.querySelector('.picked-options')
   pickedOptionSection.innerHTML = ''
 
-  for(const option in options) {
-    if(options[option]){
-      const optionToDisplay = options[option]
-      optionToDisplay.forEach((element) => {
-        pickedOptionSection.innerHTML += usePickedOptionTemplate(option, element)
+  for(const category in options) {
+    if(options[category]){
+      const optionsToDisplay = options[category]
+      optionsToDisplay.forEach((element) => {
+        pickedOptionSection.innerHTML += usePickedOptionTemplate(category, element)
       })
     }
   }

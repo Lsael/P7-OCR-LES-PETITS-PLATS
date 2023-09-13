@@ -1,4 +1,4 @@
-import { search } from "./quickSearch.js";
+import { search } from "./search/quickSearch.js";
 /* import { search } from "./linearSearch.js"; */
 
 const filterWithInput = (recipes, searchTerm) => {
@@ -27,7 +27,6 @@ const filterWithInput = (recipes, searchTerm) => {
   return filteredList;
 };
 
-// TODO : Afficher les elements séléctionnés sous le select
 const filterWithOptions = (recipes, options) => {
   let filteredList = recipes;
 

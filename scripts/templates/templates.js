@@ -1,6 +1,6 @@
 import { translateTitle } from "../utils/utils.js";
 
-export const useOptionsTemplate = (category, options) => {
+export const useOptionsTemplate = (category, pickedOptions, options) => {
   return `
     <div class="options-title">
       <h3>${category}</h3>
@@ -8,9 +8,12 @@ export const useOptionsTemplate = (category, options) => {
     </div>
     <div class="options-menu" style="opacity: 0;">
       <input type="search" class="${translateTitle(category)}-search" />
+      ${pickedOptions ? pickedOptions.map(pickedOption => {
+        return `<span class="${translateTitle(category)} option active-option">${pickedOption}</span>`;
+      }).join('') : ""}
       <ul class="${translateTitle(category)}-menu">
       ${options.map((option) => {
-            return `<li class="${translateTitle(category)} option">${option}</li>`;
+        return `<li class="${translateTitle(category)} option">${option}</li>`;
       }).join('')}
       </ul>
     </div>

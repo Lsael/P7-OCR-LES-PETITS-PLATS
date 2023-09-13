@@ -106,12 +106,15 @@ main {
   .options-menu {
     position: absolute;
     top: 100%;
+    padding-bottom: 8px;
     background-color: white;
     width: 200px;
-    padding: 16px;
     z-index: 100;
     border-radius: 0 0 8px 8px;
     transform: translate(0,-9999px);
+    li, input {
+      margin: 16px;
+    }
     ul {
       max-height: 50vh;
       overflow-y:scroll;
@@ -135,6 +138,13 @@ main {
       text-transform: uppercase;
     }
   }
+}
+
+.active-option {
+  display: block;
+  background-color: $yellow;
+  padding: 8px 16px;
+  cursor: pointer;
 }
 
 .picked-options {
