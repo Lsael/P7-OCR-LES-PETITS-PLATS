@@ -1,4 +1,3 @@
-
 export const search = (list, searchTerm) => {
     let result = false;
     for(let element of list) {
@@ -8,3 +7,4 @@ export const search = (list, searchTerm) => {
     }
     return result
   }
+  

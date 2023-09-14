@@ -1,5 +1,4 @@
-import { search } from "./search/quickSearch.js";
-/* import { search } from "./linearSearch.js"; */
+import { search } from "../search.js";
 
 const filterWithInput = (recipes, searchTerm) => {
   const filteredList = recipes.filter((recipe) => {
@@ -14,15 +13,6 @@ const filterWithInput = (recipes, searchTerm) => {
       return true
     }
   });
-
-/*     if(search(name.split(' '), searchTerm)) {
-      return true
-    } else if(search(description.split(' '), searchTerm)) {
-      return true
-    } else if(search(ingredients.split(' '), searchTerm)) {
-      return true
-    }
-  }); */
 
   return filteredList;
 };

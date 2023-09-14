@@ -1,4 +1,4 @@
-import { OpenCloseOptionsMenu, pickOption, removeOption, updateSortingOptions } from "../algorithm/options.js";
+import { OpenCloseOptionsMenu, pickOption, removeOption, updateSortingOptions } from "../options.js";
 import { displaySearch } from "../pages/index.js";
 
 export const handleMainSearchInput = () => {

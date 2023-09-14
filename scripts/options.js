@@ -1,8 +1,8 @@
-import { displaySearch, getFilteredRecipes } from "../pages/index.js";
-import { useOptionsTemplate, usePickedOptionTemplate } from "../templates/templates.js";
-import { handleClickPickOption, handleClickRemoveOption } from "../utils/listeners.js";
-import { search } from "./search/quickSearch.js";
+import { displaySearch, getFilteredRecipes } from "./pages/index.js";
+import { useOptionsTemplate, usePickedOptionTemplate } from "./templates/templates.js";
+import { handleClickPickOption, handleClickRemoveOption } from "./utils/listeners.js";
 import { addOptionInURL, getSearchFromURL, RemoveOptionFromURL } from "./url.js";
+import { search } from "./search.js";
 
 const getOptions = (recipes, category) => {
   let options = [];
