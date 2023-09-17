@@ -8,6 +8,7 @@ import { getSearchFromURL, updateTitleInURL } from '../url.js';
 import { handleClickPickOption, handleMainSearchInput, handleMenuOpenClose, handleOptionSearchInput } from '../utils/listeners.js';
 
 // TODO : Fermer le menu des options quand on clique à l'exterieur
+// TODO : Afficher "Aucune recette" quand aucun résultat
 
 export const getFilteredRecipes = () => {
   const { title, options } = getSearchFromURL()

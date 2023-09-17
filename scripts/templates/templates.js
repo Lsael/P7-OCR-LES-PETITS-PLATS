@@ -35,7 +35,9 @@ export const useThumbnailTemplate = (recipe) => {
     <article class='recipe'>
         <span class="recipe__time">${time}min</span>
         <img src='assets/images/${image}' alt='${name}' class="recipe__image"/>
-        <h2 class="recipe__title">${name}</h2>
+        <div class="recipe__title">
+          <h2>${name}</h2>
+        </div>
         <div class="recipe__description">
             <h3>Recette</h3>
             <span>${description}</span>

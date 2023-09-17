@@ -204,16 +204,20 @@ main {
   &__image {
     width: 100%;
     object-fit: cover;
-    height: 300px;
+    height: 253px;
     aspect-ratio: 1;
   }
   &__title, &__description, &__ingredients {
     padding: 0 24px;
   }
   &__title {
-    font-family: 'Anton';
-    margin: 16px 0;
-    font-size: 18px;
+    height: 88px;
+    display: flex;
+    align-items: center;
+    h2 {
+      font-size: 18px;
+      font-family: 'Anton';
+    }
   }
   &__description {
     height: 107px;
@@ -226,7 +230,8 @@ main {
     font-size: 12px;
   }
   &__ingredients {
-    margin: 8px 0;
+    height: 186px;
+    margin-top: 8px;
   }
   &__ingredients-list {
     display: grid;
