@@ -6,7 +6,7 @@ const filterWithInput = (recipes, searchTerm) => {
   for (const recipe of recipes) {
     const name = recipe.name;
     const description = recipe.description;
-
+    
     // creating a string of ingredients to match with the searchTerm
     let ingredients = '';
     for (const ingredient of recipe.ingredients) {
