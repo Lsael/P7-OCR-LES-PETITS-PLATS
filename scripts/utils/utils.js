@@ -15,12 +15,12 @@ export const displayRecipesCount = (count) => {
 };
 
 export const translateTitle = (title) => {
-  switch(title) {
-    case "Ingrédients":
-      return "ingredients";
-    case "Appareils":
-      return "appliances";
-    case "Ustensiles":
-      return "ustensils";
+  switch (title) {
+    case 'Ingrédients':
+      return 'ingredients';
+    case 'Appareils':
+      return 'appliances';
+    case 'Ustensiles':
+      return 'ustensils';
   }
-}
+};

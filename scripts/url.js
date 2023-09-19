@@ -36,15 +36,15 @@ export const getSearchFromURL = () => {
   const url = new URL(window.location);
 
   const getParam = (param) => {
-    return url.searchParams.get(param)
-  }
+    return url.searchParams.get(param);
+  };
 
   return {
     title: getParam('title'),
     options: {
-      ingredients: getParam('ingredients')?.split(","),
-      appliances: getParam('appliances')?.split(","),
-      ustensils: getParam('ustensils')?.split(",")
+      ingredients: getParam('ingredients')?.split(','),
+      appliances: getParam('appliances')?.split(','),
+      ustensils: getParam('ustensils')?.split(',')
     }
   };
 };

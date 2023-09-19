@@ -1,4 +1,4 @@
-import { translateTitle } from "../utils/utils.js";
+import { translateTitle } from '../utils/utils.js';
 
 export const useOptionsTemplate = (category, pickedOptions, options) => {
   return `
@@ -8,13 +8,21 @@ export const useOptionsTemplate = (category, pickedOptions, options) => {
     </div>
     <div class="options-menu" style="opacity: 0;">
       <input type="search" class="${translateTitle(category)}-search" />
-      ${pickedOptions ? pickedOptions.map(pickedOption => {
-        return `<span class="${translateTitle(category)} option active-option">${pickedOption}</span>`;
-      }).join('') : ""}
+      ${
+        pickedOptions
+          ? pickedOptions
+              .map((pickedOption) => {
+                return `<span class="${translateTitle(category)} option active-option">${pickedOption}</span>`;
+              })
+              .join('')
+          : ''
+      }
       <ul class="${translateTitle(category)}-menu">
-      ${options.map((option) => {
-        return `<li class="${translateTitle(category)} option">${option}</li>`;
-      }).join('')}
+      ${options
+        .map((option) => {
+          return `<li class="${translateTitle(category)} option">${option}</li>`;
+        })
+        .join('')}
       </ul>
     </div>
     `;
@@ -25,8 +33,8 @@ export const usePickedOptionTemplate = (category, option) => {
   <p>
     <span class="${category} option-remove-title">${option}</span>
     <img class="option-remove" src="./assets/images/cross.png" alt="remove option">
-  </p>`
-}
+  </p>`;
+};
 
 export const useThumbnailTemplate = (recipe) => {
   const { name, image, time, description, ingredients } = recipe;

@@ -7,11 +7,11 @@ import { displayPickedOptions, displaySortingOptions } from '../options.js';
 import { getSearchFromURL, updateTitleInURL } from '../url.js';
 import { handleClickPickOption, handleMainSearchInput, handleMenuOpenClose, handleOptionSearchInput } from '../utils/listeners.js';
 
-// TODO : Fermer le menu des options quand on clique à l'exterieur
 // TODO : Afficher "Aucune recette" quand aucun résultat
+// BUG : Boucle infini quand on cherche dans la barre APRES avoir choisi des options
 
 export const getFilteredRecipes = () => {
-  const { title, options } = getSearchFromURL()
+  const { title, options } = getSearchFromURL();
 
   return filterRecipes(recipes, title, options);
 };
@@ -20,22 +20,26 @@ const displaySearchResults = (recipes) => {
   const searchElement = document.querySelector('.search-result');
   searchElement.innerHTML = '';
 
-  recipes.forEach((recipe) => {
-    searchElement.innerHTML += useThumbnailTemplate(recipe);
-  });
+  if (recipes.length > 0) {
+    recipes.forEach((recipe) => {
+      searchElement.innerHTML += useThumbnailTemplate(recipe);
+    });
+  } else {
+    searchElement.innerHTML = "<div class='no-recipe'><span>Aucun résultat ne correspond à votre recherche.</span></div>";
+  }
 };
 
 const setListeners = () => {
-  handleMainSearchInput()
-  handleMenuOpenClose()
-  handleOptionSearchInput()
-  handleClickPickOption()
+  handleMainSearchInput();
+  handleMenuOpenClose();
+  handleOptionSearchInput();
+  handleClickPickOption();
 };
 
 export const displaySearch = () => {
-  const input = getSearchInput()
-  updateTitleInURL(input)
-  
+  const input = getSearchInput();
+  updateTitleInURL(input);
+
   const recipes = getFilteredRecipes();
 
   displaySortingOptions();
@@ -46,7 +50,7 @@ export const displaySearch = () => {
 
 const initHome = () => {
   displaySearch();
-  displayPickedOptions()
+  displayPickedOptions();
 };
 
 initHome();

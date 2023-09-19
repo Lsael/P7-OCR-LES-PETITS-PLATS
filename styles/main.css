@@ -13,7 +13,7 @@
 }
 
 body {
-  background-color: #C6C6C6;
+  background-color: #c6c6c6;
   font-family: "Manrope";
 }
 
@@ -119,7 +119,8 @@ main {
   border-radius: 0 0 8px 8px;
   transform: translate(0, -9999px);
 }
-.sort-options .options-menu li, .sort-options .options-menu input {
+.sort-options .options-menu li,
+.sort-options .options-menu input {
   margin: 16px;
 }
 .sort-options .options-menu ul {
@@ -231,7 +232,7 @@ main {
 }
 .recipe h3 {
   text-transform: uppercase;
-  color: #7A7A7A;
+  color: #7a7a7a;
   margin: 16px 0;
   font-size: 12px;
 }
@@ -252,5 +253,15 @@ main {
   font-weight: 600;
 }
 .recipe__ingredients-quantity {
-  color: #7A7A7A;
+  color: #7a7a7a;
+}
+
+.no-recipe {
+  width: 100%;
+  height: 230px;
+  background-color: white;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  font-size: 24px;
 }/*# sourceMappingURL=main.css.map */
