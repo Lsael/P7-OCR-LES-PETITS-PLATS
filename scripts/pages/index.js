@@ -1,14 +1,10 @@
-/* import { filterRecipes } from '../algorithms/filterNew.js'; */
-import { filterRecipes } from '../algorithms/filterOld.js';
+import { filterRecipes } from '../algorithm/filter.js'
 import { recipes } from '../../database/recipes.js';
 import { useThumbnailTemplate } from '../templates/templates.js';
 import { getSearchInput, displayRecipesCount } from '../utils/utils.js';
 import { displayPickedOptions, displaySortingOptions } from '../options.js';
 import { getSearchFromURL, updateTitleInURL } from '../url.js';
 import { handleClickPickOption, handleMainSearchInput, handleMenuOpenClose, handleOptionSearchInput } from '../utils/listeners.js';
-
-// TODO : Afficher "Aucune recette" quand aucun résultat
-// BUG : Boucle infini quand on cherche dans la barre APRES avoir choisi des options
 
 export const getFilteredRecipes = () => {
   const { title, options } = getSearchFromURL();
