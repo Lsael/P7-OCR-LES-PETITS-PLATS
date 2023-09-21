@@ -41,9 +41,6 @@ const getSortingOptions = () => {
   };
 };
 
-// TODO : à Factoriser
-// Bug : Parfois les "picked options" apparaissent toujours dans la liste
-
 export const displaySortingOptions = () => {
   const recipes = getFilteredRecipes();
   let { ingredients, appliances, ustensils } = getSortingOptions(recipes);
